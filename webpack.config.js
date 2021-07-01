@@ -2,34 +2,9 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const path = require("path");
 const {optimize} = require("webpack");
 
-const customProperties = require("./css-variables");
-
 const postcss = {
     loader: "postcss-loader",
-    options: {
-        postcssOptions: {
-            plugins: [
-                "postcss-import",
-                [
-                    "postcss-custom-properties",
-                    {
-                        preserve: false,
-                        importFrom: {customProperties}
-                    }
-                ],
-                "postcss-calc",
-                "postcss-color-function",
-                [
-                    "postcss-preset-env",
-                    {
-                        features: {
-                            "nesting-rules": true
-                        }
-                    }
-                ]
-            ]
-        }
-    }
+    options: {postcssOptions: {plugins: ["postcss-import", "postcss-nesting"]}}
 };
 
 module.exports = {
