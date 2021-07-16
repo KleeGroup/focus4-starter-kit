@@ -14,7 +14,8 @@ module.exports = {
     output: {
         path: path.join(__dirname, "static"),
         filename: "app.js",
-        publicPath: "./static/"
+        publicPath: "./static/",
+        assetModuleFilename: "[name][ext]"
     },
     devServer: {
         publicPath: "/static/",
@@ -67,12 +68,7 @@ module.exports = {
             },
             {
                 test: /\.(woff2?|ttf|eot|svg|png)$/,
-                use: [
-                    {
-                        loader: "file-loader",
-                        options: {name: "[name].[ext]"}
-                    }
-                ]
+                type: "asset"
             }
         ]
     }
